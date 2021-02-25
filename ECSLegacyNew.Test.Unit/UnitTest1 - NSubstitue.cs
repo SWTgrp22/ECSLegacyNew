@@ -51,17 +51,40 @@ namespace ECSLegacy.Test.Unit
             //Ønsker at der skal være varmere
 
             //Act
-
             _fakeTempSensor.GetTemp().Returns(temp);
             uut.Regulate();
 
-
             //Assert
-
             _fakeHeater.Received(1).TurnOn();
-
         }
 
+        [TestCase(false,true)]
+        [TestCase(true,false)]
+        [TestCase(false,false)]
+        public void RunSelfTest_SubstituteFails_SelfTestFail(bool tempsensor, bool heater)
+        {
+            //Arrange
+
+            //Act
+            _fakeTempSensor.RunSelfTest().Returns(tempsensor);
+            _fakeHeater.RunSelfTest().Returns(heater);
+
+            //Assert
+            Assert.IsFalse(uut.RunSelfTest());
+        }
+
+        [Test]
+        public void RunSelfTest_SubstituteApproved_SelfTestApproved()
+        {
+            //Arrange
+
+            //Act
+            _fakeTempSensor.RunSelfTest().Returns(true);
+            _fakeHeater.RunSelfTest().Returns(true);
+
+            //Assert
+            Assert.IsTrue(uut.RunSelfTest());
+        }
     }
 
 
