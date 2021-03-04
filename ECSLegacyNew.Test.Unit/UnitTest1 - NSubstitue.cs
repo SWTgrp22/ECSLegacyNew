@@ -93,6 +93,39 @@ namespace ECSLegacy.Test.Unit
             //Assert
             Assert.IsTrue(uut.RunSelfTest());
         }
+
+        [Test]
+        public void SetThreshold_SetsThreshold_ThresholdIsTrue()
+        {
+            //Arange 
+
+            //Act
+            int thr = 23;
+            uut.SetThreshold(thr);
+
+
+            //Assert
+            Assert.That(uut.GetThreshold(), Is.EqualTo(thr));
+
+        }
+
+        [Test]
+        public void GetCurTemp_GetCurrentTempFromStub_ÏsEqalToInput()
+        {
+            //Arange 
+
+            //Act
+            int temp = 24;
+            _fakeTempSensor.GetTemp().Returns(temp);
+            //uut.GetCurTemp();
+
+
+            //Assert
+            Assert.That(uut.GetCurTemp(), Is.EqualTo(temp));
+        }
+
+       
+
     }
 
 
