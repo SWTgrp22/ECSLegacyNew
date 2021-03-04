@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+ï»¿using System.Runtime.CompilerServices;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -25,12 +25,12 @@ namespace ECSLegacy.Test.Unit
         [TestCase(200)]
         public void Regulate_TempOverThreshold_HeaterOff(int temp)
         {
-            //EP: Her er threshold testet samt en værdi lige over, dertil er testen en max-høj value for at teste udfaldet.
+            //EP: Her er threshold testet samt en vï¿½rdi lige over, dertil er testen en max-hï¿½j value for at teste udfaldet.
 
             //Arrange 
 
-            //Tester metoden regulate at heateren turner off, når temperaturen ligger over tærskelværdien
-            //Ønsker at der skal være koldere
+            //Tester metoden regulate at heateren turner off, nï¿½r temperaturen ligger over tï¿½rskelvï¿½rdien
+            //ï¿½nsker at der skal vï¿½re koldere
 
             //Act
 
@@ -47,12 +47,12 @@ namespace ECSLegacy.Test.Unit
         [TestCase(-20)]
         public void Regulate_TempunderThreshold_HeaterOn(int temp)
         {
-            //EP: Her er bouderyen til threshold testet ved at teste på en temperatur på 19, dertil er testen en minusværdi for at teste udfaldet. 
+            //EP: Her er bouderyen til threshold testet ved at teste pï¿½ en temperatur pï¿½ 19, dertil er testen en minusvï¿½rdi for at teste udfaldet. 
 
             //Arrange 
 
-            //Tester metoden regulate at heateren turner on, når temperaturen ligger under tærskelværdien
-            //Ønsker at der skal være varmere
+            //Tester metoden regulate at heateren turner on, nï¿½r temperaturen ligger under tï¿½rskelvï¿½rdien
+            //ï¿½nsker at der skal vï¿½re varmere
 
             //Act
             _fakeTempSensor.GetTemp().Returns(temp);
@@ -93,45 +93,6 @@ namespace ECSLegacy.Test.Unit
             //Assert
             Assert.IsTrue(uut.RunSelfTest());
         }
-
-        [TestCase(-35)]
-        [TestCase(23)]
-        [TestCase(200)]
-        public void SetThreshold_SetsThreshold_ThresholdIsTrue(int thr)
-        {
-            //EP: Her er testet at threshold både kan sættes til meget høje værdier og negative heltal
-
-            //Arange 
-
-            //Act
-            uut.SetThreshold(thr);
-
-
-            //Assert
-            Assert.That(uut.GetThreshold(), Is.EqualTo(thr));
-
-        }
-
-        [TestCase(-100)]
-        [TestCase(24)]
-        [TestCase(240)]
-        public void GetCurTemp_GetCurrentTempFromStub_ÏsEqalToInput(int temp)
-        {
-            //EP: Her er testet at temperaturen både kan sættes til meget høje værdier og negative heltal
-
-            //Arange 
-
-            //Act
-            _fakeTempSensor.GetTemp().Returns(temp);
-            //uut.GetCurTemp();
-
-
-            //Assert
-            Assert.That(uut.GetCurTemp(), Is.EqualTo(temp));
-        }
-
-       
-
     }
 
 
