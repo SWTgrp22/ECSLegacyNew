@@ -20,11 +20,13 @@ namespace ECSLegacy.Test.Unit
             //uut = new ECS(20, new FakeTempSensor(), new FakeHeater());
         }
 
-        [TestCase(24)]
-        [TestCase(23)]
-        [TestCase(22)]
+        [TestCase(20)]
+        [TestCase(21)]
+        [TestCase(200)]
         public void Regulate_TempOverThreshold_HeaterOff(int temp)
         {
+            //EP: Her er threshold testet samt en værdi lige over, dertil er testen en max-høj value for at teste udfaldet.
+
             //Arrange 
 
             //Tester metoden regulate at heateren turner off, når temperaturen ligger over tærskelværdien
@@ -42,9 +44,11 @@ namespace ECSLegacy.Test.Unit
 
         [TestCase(19)]
         [TestCase(10)]
-        [TestCase(5)]
+        [TestCase(-20)]
         public void Regulate_TempunderThreshold_HeaterOn(int temp)
         {
+            //EP: Her er bouderyen til threshold testet ved at teste på en temperatur på 19, dertil er testen en minusværdi for at teste udfaldet. 
+
             //Arrange 
 
             //Tester metoden regulate at heateren turner on, når temperaturen ligger under tærskelværdien
@@ -63,6 +67,8 @@ namespace ECSLegacy.Test.Unit
         [TestCase(false,false)]
         public void RunSelfTest_SubstituteFails_SelfTestFail(bool tempsensor, bool heater)
         {
+            //EP: Her er alle mulige inputs som resulterer i samme output testet 
+
             //Arrange
 
             //Act
@@ -76,6 +82,8 @@ namespace ECSLegacy.Test.Unit
         [Test]
         public void RunSelfTest_SubstituteApproved_SelfTestApproved()
         {
+            //EP: Her findes kun et muligt input der kan resultere i et true-output 
+
             //Arrange
 
             //Act
