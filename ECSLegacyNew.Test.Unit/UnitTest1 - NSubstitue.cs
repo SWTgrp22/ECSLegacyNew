@@ -94,13 +94,16 @@ namespace ECSLegacy.Test.Unit
             Assert.IsTrue(uut.RunSelfTest());
         }
 
-        [Test]
-        public void SetThreshold_SetsThreshold_ThresholdIsTrue()
+        [TestCase(-35)]
+        [TestCase(23)]
+        [TestCase(200)]
+        public void SetThreshold_SetsThreshold_ThresholdIsTrue(int thr)
         {
+            //EP: Her er testet at threshold både kan sættes til meget høje værdier og negative heltal
+
             //Arange 
 
             //Act
-            int thr = 23;
             uut.SetThreshold(thr);
 
 
@@ -109,13 +112,16 @@ namespace ECSLegacy.Test.Unit
 
         }
 
-        [Test]
-        public void GetCurTemp_GetCurrentTempFromStub_�sEqalToInput()
+        [TestCase(-100)]
+        [TestCase(24)]
+        [TestCase(240)]
+        public void GetCurTemp_GetCurrentTempFromStub_ÏsEqalToInput(int temp)
         {
+            //EP: Her er testet at temperaturen både kan sættes til meget høje værdier og negative heltal
+
             //Arange 
 
             //Act
-            int temp = 24;
             _fakeTempSensor.GetTemp().Returns(temp);
             //uut.GetCurTemp();
 
@@ -124,7 +130,7 @@ namespace ECSLegacy.Test.Unit
             Assert.That(uut.GetCurTemp(), Is.EqualTo(temp));
         }
 
-       
+
 
     }
 
